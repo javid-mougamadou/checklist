@@ -32,12 +32,14 @@ export function useTasks() {
   const addTask = useCallback((label: string) => {
     const trimmed = label.trim()
     if (!trimmed) return
-    const maxOrder = tasks.length === 0 ? 0 : Math.max(...tasks.map((t) => t.order))
-    setTasks((prev) => [
-      ...prev,
-      { id: generateId(), label: trimmed, completed: false, order: maxOrder + 1 },
-    ])
-  }, [tasks.length])
+    setTasks((prev) => {
+      const maxOrder = prev.length === 0 ? 0 : Math.max(...prev.map((t) => t.order))
+      return [
+        ...prev,
+        { id: generateId(), label: trimmed, completed: false, order: maxOrder + 1 },
+      ]
+    })
+  }, [])
 
   const toggleTask = useCallback((id: string) => {
     setTasks((prev) =>
