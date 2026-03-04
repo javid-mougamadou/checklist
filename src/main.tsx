@@ -11,8 +11,9 @@ createRoot(document.getElementById('root')!).render(
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
+    const base = import.meta.env.BASE_URL
     navigator.serviceWorker
-      .register('/service-worker.js')
+      .register(`${base}service-worker.js`)
       .then((registration) => {
         if (navigator.serviceWorker.controller) {
           navigator.serviceWorker.addEventListener('controllerchange', () => {

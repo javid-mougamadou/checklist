@@ -1,10 +1,12 @@
-const INDEX_HTML = '/index.html';
+// Base path from SW script URL (e.g. /checklist/ when deployed on GitHub Pages)
+const BASE = self.location.pathname.replace(/\/[^/]*$/, '') || '';
+const INDEX_HTML = BASE + '/index.html';
 const CACHE_NAME = 'checklist-cache-v2';
 const APP_SHELL = [
   INDEX_HTML,
-  '/manifest.webmanifest?v=1',
-  '/assets/android-chrome-192x192.png',
-  '/assets/android-chrome-512x512.png',
+  BASE + '/manifest.webmanifest?v=1',
+  BASE + '/assets/android-chrome-192x192.png',
+  BASE + '/assets/android-chrome-512x512.png',
 ];
 
 self.addEventListener('install', (event) => {
