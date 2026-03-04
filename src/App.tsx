@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react'
+import { useMemo, useEffect } from 'react'
 import { TaskCreate } from './components/TaskCreate'
 import { TaskList } from './components/TaskList'
 import { ChecklistFooter, type ViewMode } from './components/ChecklistFooter'
@@ -6,6 +6,20 @@ import { Footer } from './components/Footer'
 import { Header } from './components/Header'
 import { useTasks } from './hooks/useTasks'
 import { useTheme } from './hooks/useTheme'
+import { usePersistentState } from './hooks/usePersistentState'
+
+const VIEW_MODE_KEY = 'checklist.view-mode'
+const SHOW_COMPLETED_KEY = 'checklist.show-completed'
+
+function parseViewMode(raw: string): ViewMode {
+  try {
+    const v = JSON.parse(raw)
+    if (v === 'list' || v === 'top2') return v
+  } catch {
+    // ignore
+  }
+  return 'list'
+}
 
 function App() {
   useEffect(() => {
@@ -21,8 +35,15 @@ function App() {
     resetAll,
   } = useTasks()
 
-  const [showCompleted, setShowCompleted] = useState(true)
-  const [viewMode, setViewMode] = useState<ViewMode>('list')
+  const [showCompleted, setShowCompleted] = usePersistentState({
+    key: SHOW_COMPLETED_KEY,
+    defaultValue: true,
+  })
+  const [viewMode, setViewMode] = usePersistentState<ViewMode>({
+    key: VIEW_MODE_KEY,
+    defaultValue: 'list',
+    deserialize: parseViewMode,
+  })
 
   const sortedTasks = useMemo(
     () => [...tasks].sort((a, b) => a.order - b.order),
