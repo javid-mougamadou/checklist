@@ -1,0 +1,27 @@
+{
+  "name": "Checklist",
+  "short_name": "Checklist",
+  "description": "Liste de tâches simple et mobile-friendly. Créée par Javid Mougamadou.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#1d232a",
+  "theme_color": "#1d232a",
+  "dir": "ltr",
+  "lang": "fr",
+  "icons": [
+    {
+      "src": "/assets/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
