@@ -90,7 +90,8 @@ export function TaskCell({ task, onToggle, onRemove }: TaskCellProps) {
       </button>
       <button
         type="button"
-        className="btn btn-ghost btn-sm btn-square shrink-0 cursor-grab active:cursor-grabbing"
+        className="btn btn-ghost btn-sm btn-square shrink-0 cursor-grab active:cursor-grabbing touch-none"
+        style={{ touchAction: 'none' }}
         aria-label="Réordonner"
         {...attributes}
         {...listeners}
