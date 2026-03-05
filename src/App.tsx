@@ -7,6 +7,7 @@ import { Header } from './components/Header'
 import { useTasks } from './hooks/useTasks'
 import { useTheme } from './hooks/useTheme'
 import { usePersistentState } from './hooks/usePersistentState'
+import { usePageTracking } from './hooks/useAnalytics'
 
 const VIEW_MODE_KEY = 'checklist.view-mode'
 const SHOW_COMPLETED_KEY = 'checklist.show-completed'
@@ -22,6 +23,7 @@ function parseViewMode(raw: string): ViewMode {
 }
 
 function App() {
+  usePageTracking('/', 'Checklist')
   useEffect(() => {
     document.title = 'Checklist'
   }, [])
